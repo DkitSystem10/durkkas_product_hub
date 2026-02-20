@@ -27,6 +27,11 @@ const productsData: Record<string, any[]> = {
             name: "CRM",
             description: "Comprehensive CRM platform for customer-facing teams.",
             logo: "/CRM.png",
+        },
+        {
+            name: "Survey2Lead",
+            description: "Convert surveys into powerful sales leads with AI-driven insights.",
+            logo: "/CRM.png", // Using CRM.png as placeholder or if you have a specific logo you can update this
         }
     ],
     finance: [

@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
     return (
-        <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-blue-50/30 via-white to-white">
+        <section className="relative pt-24 pb-8 lg:pt-48 lg:pb-12 overflow-hidden bg-gradient-to-b from-blue-50/30 via-white to-white">
 
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-100/20 rounded-full blur-[150px] pointer-events-none" />
@@ -24,14 +24,14 @@ const Hero = () => {
                 </div>
 
                 {/* Main Headline */}
-                <div className="text-center max-w-5xl mx-auto mb-12">
-                    <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-bold text-[#1e293b] leading-[1.15] mb-6 tracking-tight">
+                <div className="text-center max-w-5xl mx-auto mb-10 md:mb-12">
+                    <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-bold text-[#1e293b] leading-[1.2] md:leading-[1.15] mb-6 tracking-tight">
                         Master Your Entire{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
                             Business Ecosystem
                         </span>
                     </h1>
-                    <p className="text-lg sm:text-xl lg:text-[22px] text-gray-600 leading-[1.6] max-w-3xl mx-auto font-normal">
+                    <p className="text-base sm:text-xl lg:text-[22px] text-gray-600 leading-[1.6] max-w-3xl mx-auto font-normal px-2 md:px-0">
                         Launch your enterprise ecosystem in seconds. A powerful, white-label ready platform designed to unify CRM, HRMS, and EMS across infinite branches and organizations.
                     </p>
                 </div>

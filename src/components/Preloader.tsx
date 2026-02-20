@@ -26,7 +26,7 @@ const Preloader = () => {
 
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 3500);
+        }, 4500);
 
         return () => {
             clearInterval(interval);
@@ -90,7 +90,7 @@ const Preloader = () => {
                             transition={{ delay: 0.5, duration: 1 }}
                         >
                             <Logo
-                                className="text-6xl md:text-8xl lg:text-[100px]"
+                                className="text-5xl md:text-8xl lg:text-[100px]"
                                 animate={true}
                                 color="dynamic"
                             />
@@ -104,12 +104,12 @@ const Preloader = () => {
                             className="mt-12 flex flex-col items-center gap-4"
                         >
                             <div className="flex items-center gap-6">
-                                <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-blue-500/30" />
+                                <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-blue-500/30" />
                                 <div className="flex items-center gap-3">
                                     <span className="text-white/40 text-[10px] font-black tracking-[0.6em] uppercase">System Core</span>
                                     <span className="text-blue-400 font-mono text-sm w-12">{progress}%</span>
                                 </div>
-                                <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-blue-500/30" />
+                                <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-blue-500/30" />
                             </div>
 
                             {/* Slim Progress Bar */}
@@ -124,7 +124,7 @@ const Preloader = () => {
                     </div>
 
                     {/* 4. Glassmorphic Decorative Border (Visual Polish) */}
-                    <div className="absolute inset-8 border border-white/5 rounded-[40px] pointer-events-none" />
+                    <div className="absolute inset-4 md:inset-8 border border-white/5 rounded-[40px] pointer-events-none" />
                 </motion.div>
             )}
         </AnimatePresence>

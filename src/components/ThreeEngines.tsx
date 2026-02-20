@@ -19,7 +19,7 @@ interface EngineSectionProps {
 
 const ThreeEngines = () => {
     return (
-        <section className="py-32 bg-slate-50 relative overflow-hidden font-outfit">
+        <section className="py-16 md:py-32 bg-slate-50 relative overflow-hidden font-outfit">
 
             {/* Premium Ambient Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -36,15 +36,15 @@ const ThreeEngines = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-100px" }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    className="text-center mb-24"
+                    className="text-center mb-12 md:mb-24"
                 >
-                    <div className="inline-block px-5 py-2.5 bg-white border border-blue-100 text-blue-700 rounded-full text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
+                    <div className="inline-block px-4 py-2 bg-white border border-blue-100 text-blue-700 rounded-full text-xs md:text-sm font-bold mb-6 uppercase tracking-widest shadow-sm">
                         The Complete Suite
                     </div>
-                    <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[#1e293b] mb-6 tracking-tight leading-[1.12]">
+                    <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-bold text-[#1e293b] mb-6 tracking-tight leading-[1.2] md:leading-[1.12]">
                         One Platform. Three Engines.
                     </h2>
-                    <p className="text-lg sm:text-xl lg:text-[22px] text-gray-600 max-w-3xl mx-auto leading-[1.6] font-medium">
+                    <p className="text-base sm:text-xl lg:text-[22px] text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium px-4 md:px-0">
                         Everything you need to run a modern institution, unified under one roof.
                     </p>
                 </motion.div>
@@ -152,7 +152,7 @@ const EngineSection = ({ color, icon: Icon, badge, shortcut, title, description,
     const colors = colorClasses[color];
 
     return (
-        <div className={`grid lg:grid-cols-2 gap-16 items-center ${isLast ? '' : 'mb-32'}`}>
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isLast ? '' : 'mb-12 md:mb-32'}`}>
 
             {/* Text Content */}
             <motion.div
@@ -179,7 +179,7 @@ const EngineSection = ({ color, icon: Icon, badge, shortcut, title, description,
                         </AnimatePresence>
                     </div>
                 </div>
-                <h3 className="text-4xl lg:text-[48px] font-bold text-[#1e293b] mb-6 tracking-tight leading-[1.12]">
+                <h3 className="text-2xl md:text-4xl lg:text-[48px] font-bold text-[#1e293b] mb-6 tracking-tight leading-[1.2] md:leading-[1.12]">
                     {title}
                 </h3>
                 <p className="text-lg text-gray-600 leading-[1.7] mb-8 font-medium">
@@ -196,7 +196,7 @@ const EngineSection = ({ color, icon: Icon, badge, shortcut, title, description,
                             className="flex items-start gap-3"
                         >
                             <CheckCircle className={`${colors.check} flex-shrink-0 mt-1`} size={20} />
-                            <span className="text-gray-700 text-[18px] font-medium">{feature}</span>
+                            <span className="text-gray-700 text-base md:text-[18px] font-medium">{feature}</span>
                         </motion.li>
                     ))}
                 </ul>

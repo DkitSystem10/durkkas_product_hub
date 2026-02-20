@@ -72,7 +72,7 @@ const FeaturesShowcase = () => {
     };
 
     return (
-        <section className="py-24 bg-white relative overflow-hidden font-outfit">
+        <section className="py-12 md:py-24 bg-white relative overflow-hidden font-outfit">
 
             {/* Premium Smooth Ambient Background */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -89,7 +89,7 @@ const FeaturesShowcase = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5 }}
-                    className="mb-16 text-center"
+                    className="mb-10 md:mb-16 text-center"
                 >
                     <div className="inline-block px-4 py-1.5 bg-white border border-blue-200 text-blue-700 rounded-full text-sm font-bold mb-6 uppercase tracking-wider shadow-sm">
                         Enterprise Grade

@@ -19,14 +19,13 @@ export default function Home() {
 
       <main className="flex-grow">
         <Hero />
-        <MockupSection />
-        <ThreeEngines />
         <AppList />
+        <ThreeEngines />
         <FeaturesShowcase />
 
         {/* Simple CTA Section */}
 
-        <section className="py-24 bg-primary relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-primary relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
           <div className="container mx-auto px-6 text-center relative z-10">
             <h2 className="text-4xl font-bold text-white mb-6">Ready to unify your business operations?</h2>

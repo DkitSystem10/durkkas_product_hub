@@ -71,23 +71,31 @@ const AppList = () => {
             icon: BarChart3,
             color: 'text-purple-600',
             bg: 'bg-purple-50'
+        },
+        {
+            id: 'survey2lead',
+            title: 'Survey2Lead',
+            description: 'Convert surveys into powerful sales leads.',
+            icon: Users, // Using Users as a placeholder
+            color: 'text-orange-600',
+            bg: 'bg-orange-50'
         }
     ];
 
     return (
-        <section id="featured-apps" className="py-20 bg-white scroll-mt-24">
+        <section id="featured-apps" className="py-12 md:pt-8 md:pb-20 bg-white scroll-mt-24">
             <div className="container mx-auto px-6 max-w-4xl">
 
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-10"
+                    className="mb-4"
                 >
                     <span className="text-[12px] font-bold text-slate-400 uppercase tracking-[0.2em]">Featured Apps</span>
                 </motion.div>
 
-                <div className="flex flex-col border-t border-slate-100">
+                <div className="flex flex-col border-t border-slate-100 mt-4">
                     {apps.map((app, index) => {
                         const Icon = app.icon;
                         return (
@@ -100,26 +108,26 @@ const AppList = () => {
                             >
                                 <Link
                                     href={`/products?category=${app.id}`}
-                                    className="group flex items-center justify-between py-10 border-b border-slate-100 hover:bg-slate-50/50 transition-all px-4 -mx-4 rounded-xl"
+                                    className="group flex flex-col md:flex-row items-start md:items-center justify-between py-8 md:py-12 border-b border-slate-100 hover:bg-slate-50/50 transition-all px-2 md:px-4 -mx-2 md:-mx-4 rounded-xl gap-6 md:gap-0"
                                 >
-                                    <div className="flex items-center gap-8">
-                                        <div className={`w-16 h-16 ${app.bg} rounded-2xl flex items-center justify-center border border-slate-100/50 shadow-sm group-hover:scale-110 transition-transform duration-300`}>
-                                            <Icon className={app.color} size={32} strokeWidth={1.5} />
+                                    <div className="flex items-center gap-4 md:gap-8">
+                                        <div className={`w-12 h-12 md:w-16 md:h-16 ${app.bg} rounded-xl md:rounded-2xl flex items-center justify-center border border-slate-100/50 shadow-sm group-hover:scale-105 transition-transform duration-300 flex-shrink-0`}>
+                                            <Icon className={app.color} size={28} strokeWidth={1.5} />
                                         </div>
                                         <div>
-                                            <h3 className="text-2xl font-bold text-[#0f172a] mb-1 group-hover:text-blue-600 transition-colors">
+                                            <h3 className="text-xl md:text-3xl font-black text-[#0f172a] md:mb-2 group-hover:text-blue-600 transition-colors tracking-tighter">
                                                 {app.title}
                                             </h3>
-                                            <p className="text-[15px] md:text-lg text-slate-500 font-medium">
+                                            <p className="text-sm md:text-xl text-slate-500 font-medium max-w-xl line-clamp-2 md:line-clamp-none">
                                                 {app.description}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
-                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 font-bold text-sm hidden md:block">
+                                    <div className="flex items-center gap-3 md:gap-4 self-end md:self-auto">
+                                        <span className="text-blue-600 font-black text-[10px] md:text-sm uppercase tracking-widest md:group-hover:translate-x-[-10px] transition-transform duration-300">
                                             Access {app.title}
                                         </span>
-                                        <ChevronRight className="text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" size={24} />
+                                        <ChevronRight className="text-blue-600 md:group-hover:translate-x-2 transition-all" size={20} />
                                     </div>
                                 </Link>
                             </motion.div>

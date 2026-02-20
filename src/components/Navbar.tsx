@@ -9,6 +9,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+    const [expandedLink, setExpandedLink] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,7 +54,7 @@ const Navbar = () => {
                     {/* LEFT: Branding */}
                     <div className="flex items-center gap-12">
                         <motion.div whileHover={{ scale: 1.05 }} className="relative z-10 flex items-center gap-2">
-                            <Logo className="text-3xl" color="dynamic" />
+                            <Logo className="text-2xl md:text-3xl" color="dynamic" />
                         </motion.div>
 
                         {/* CENTER: Navigation (Desktop) */}
@@ -133,7 +134,7 @@ const Navbar = () => {
                                 href="/#featured-apps"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="relative overflow-hidden px-6 py-2.5 bg-white text-[#002B5B] rounded-lg shadow-lg shadow-blue-900/40 group cursor-pointer"
+                                className="hidden md:flex relative overflow-hidden px-6 py-2.5 bg-white text-[#002B5B] rounded-lg shadow-lg shadow-blue-900/40 group cursor-pointer"
                             >
                                 <span className="relative z-10 text-[14px] font-bold flex items-center gap-2">
                                     Access Your Apps
@@ -164,20 +165,59 @@ const Navbar = () => {
                     >
                         <div className="flex flex-col gap-2 mt-4">
                             {navLinks.map((link, i) => (
-                                <motion.a
-                                    key={link.name}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.05 }}
-                                    href={link.href}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 group"
-                                >
-                                    <span className="text-xl font-bold text-blue-100 group-hover:text-white transition-colors">
-                                        {link.name}
-                                    </span>
-                                    {link.hasDropdown && <ChevronDown size={20} className="text-blue-300 group-hover:text-white -rotate-90" />}
-                                </motion.a>
+                                <div key={link.name} className="flex flex-col">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.05 }}
+                                        onClick={() => {
+                                            if (link.hasDropdown && link.items) {
+                                                setExpandedLink(expandedLink === link.name ? null : link.name);
+                                            } else if (link.href !== "#") {
+                                                window.location.href = link.href;
+                                                setIsMenuOpen(false);
+                                            }
+                                        }}
+                                        className="flex items-center justify-between p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 group cursor-pointer"
+                                    >
+                                        <span className="text-xl font-bold text-blue-100 group-hover:text-white transition-colors">
+                                            {link.name}
+                                        </span>
+                                        {link.hasDropdown && (
+                                            <ChevronDown
+                                                size={20}
+                                                className={`text-blue-300 group-hover:text-white transition-transform duration-300 ${expandedLink === link.name ? '' : '-rotate-90'}`}
+                                            />
+                                        )}
+                                    </motion.div>
+
+                                    {/* Sub-items for mobile */}
+                                    <AnimatePresence>
+                                        {link.hasDropdown && expandedLink === link.name && link.items && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden bg-white/5 rounded-xl ml-4 mt-1 mb-2"
+                                            >
+                                                {link.items.map((subItem, idx) => (
+                                                    <a
+                                                        key={idx}
+                                                        href={subItem.href}
+                                                        onClick={() => setIsMenuOpen(false)}
+                                                        className="flex items-center gap-4 p-4 text-blue-100/70 hover:text-white transition-colors"
+                                                    >
+                                                        <subItem.icon size={18} className="text-blue-400" />
+                                                        <div className="flex flex-col">
+                                                            <span className="font-bold text-sm">{subItem.name}</span>
+                                                            <span className="text-[10px] opacity-60 font-medium">{subItem.description}</span>
+                                                        </div>
+                                                    </a>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             ))}
                         </div>
 
