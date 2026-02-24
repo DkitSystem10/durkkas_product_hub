@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import MockupSection from "@/components/MockupSection";
 import ThreeEngines from "@/components/ThreeEngines";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import AppList from "@/components/AppList";

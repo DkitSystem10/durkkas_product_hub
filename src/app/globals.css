@@ -19,6 +19,11 @@
   --color-secondary: var(--secondary);
   --color-deep-navy: var(--foreground);
   --color-muted-slate: var(--muted);
+
+  /* CRM Colors Legacy Integration */
+  --color-crm-primary: #2F284F;
+  --color-crm-light: #6157E1;
+  --color-crm-teal: #4EB5A9;
 }
 
 body {

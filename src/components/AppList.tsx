@@ -107,7 +107,7 @@ const AppList = () => {
                                 transition={{ delay: index * 0.1 }}
                             >
                                 <Link
-                                    href={`/products?category=${app.id}`}
+                                    href={app.id === 'crm' ? '/crm' : `/products?category=${app.id}`}
                                     className="group flex flex-col md:flex-row items-start md:items-center justify-between py-8 md:py-12 border-b border-slate-100 hover:bg-slate-50/50 transition-all px-2 md:px-4 -mx-2 md:-mx-4 rounded-xl gap-6 md:gap-0"
                                 >
                                     <div className="flex items-center gap-4 md:gap-8">

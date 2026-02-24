@@ -45,7 +45,7 @@ const Navbar = () => {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 font-outfit ${isScrolled
+                className={`fixed top-0 left-0 w-full z-[300] transition-all duration-500 font-outfit ${isScrolled
                     ? 'h-[80px] bg-[#002B5B]/95 backdrop-blur-xl border-b border-white/10 shadow-xl shadow-blue-900/20'
                     : 'h-[90px] bg-[#002B5B] border-b border-white/5'
                     }`}>
@@ -161,7 +161,7 @@ const Navbar = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[90] bg-[#002B5B] pt-[90px] px-6 lg:hidden overflow-y-auto"
+                        className="fixed inset-0 z-[290] bg-[#002B5B] pt-[90px] px-6 lg:hidden overflow-y-auto"
                     >
                         <div className="flex flex-col gap-2 mt-4">
                             {navLinks.map((link, i) => (

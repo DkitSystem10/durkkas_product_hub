@@ -63,7 +63,7 @@ const ThreeEngines = () => {
                         'Automated follow-up reminders',
                         'Real-time sales analytics'
                     ]}
-                    link="/products#crm"
+                    link="/crm"
                     imageRight={true}
                 />
 
