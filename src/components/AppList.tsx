@@ -90,7 +90,6 @@ const AppList = () => {
         }
     ];
 
-
     return (
         <section id="featured-apps" className="py-12 md:pt-8 md:pb-20 bg-white scroll-mt-24">
             <div className="container mx-auto px-6 max-w-4xl">
