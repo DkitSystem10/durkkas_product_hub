@@ -22,7 +22,8 @@ const AppList = () => {
             description: 'Comprehensive CRM platform for customer-facing teams.',
             icon: Users,
             color: 'text-blue-600',
-            bg: 'bg-blue-50'
+            bg: 'bg-blue-50',
+            href: '/crm',
         },
         {
             id: 'ems',
@@ -30,7 +31,8 @@ const AppList = () => {
             description: 'Enterprise Management System for core operations.',
             icon: LayoutDashboard,
             color: 'text-teal-600',
-            bg: 'bg-teal-50'
+            bg: 'bg-teal-50',
+            href: '/products?category=ems',
         },
         {
             id: 'hrms',
@@ -38,7 +40,8 @@ const AppList = () => {
             description: 'Modern Human Resource Management System.',
             icon: UserCheck,
             color: 'text-indigo-600',
-            bg: 'bg-indigo-50'
+            bg: 'bg-indigo-50',
+            href: '/hrms/payroll',
         },
         {
             id: 'attendance',
@@ -46,7 +49,8 @@ const AppList = () => {
             description: 'Smart biometric & face verification attendance.',
             icon: Clock,
             color: 'text-emerald-600',
-            bg: 'bg-emerald-50'
+            bg: 'bg-emerald-50',
+            href: '/products?category=attendance',
         },
         {
             id: 'payroll',
@@ -54,7 +58,8 @@ const AppList = () => {
             description: 'Automated payroll & tax compliance.',
             icon: Wallet,
             color: 'text-rose-600',
-            bg: 'bg-rose-50'
+            bg: 'bg-rose-50',
+            href: '/hrms/payroll',
         },
         {
             id: 'statutory',
@@ -62,7 +67,8 @@ const AppList = () => {
             description: 'Legal & regulatory compliance management.',
             icon: Scale,
             color: 'text-amber-600',
-            bg: 'bg-amber-50'
+            bg: 'bg-amber-50',
+            href: '/hrms/statutory',
         },
         {
             id: 'reports',
@@ -70,17 +76,20 @@ const AppList = () => {
             description: 'Advanced AI-powered business intelligence.',
             icon: BarChart3,
             color: 'text-purple-600',
-            bg: 'bg-purple-50'
+            bg: 'bg-purple-50',
+            href: '/products?category=reports',
         },
         {
             id: 'survey2lead',
             title: 'Survey2Lead',
             description: 'Convert surveys into powerful sales leads.',
-            icon: Users, // Using Users as a placeholder
+            icon: Users,
             color: 'text-orange-600',
-            bg: 'bg-orange-50'
+            bg: 'bg-orange-50',
+            href: '/products?category=survey2lead',
         }
     ];
+
 
     return (
         <section id="featured-apps" className="py-12 md:pt-8 md:pb-20 bg-white scroll-mt-24">
@@ -107,7 +116,7 @@ const AppList = () => {
                                 transition={{ delay: index * 0.1 }}
                             >
                                 <Link
-                                    href={app.id === 'crm' ? '/crm' : `/products?category=${app.id}`}
+                                    href={app.href}
                                     className="group flex flex-col md:flex-row items-start md:items-center justify-between py-8 md:py-12 border-b border-slate-100 hover:bg-slate-50/50 transition-all px-2 md:px-4 -mx-2 md:-mx-4 rounded-xl gap-6 md:gap-0"
                                 >
                                     <div className="flex items-center gap-4 md:gap-8">
