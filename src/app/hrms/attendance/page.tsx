@@ -71,6 +71,44 @@ const AttendancePage = () => {
             description: "One‑click export keeps salary calculations error‑free."
         }
     ];
+    const coreFeatureCardThemes = [
+        {
+            activeCard: "border-blue-300 bg-blue-50",
+            hoverCard: "hover:border-blue-200 hover:bg-blue-50",
+            railActive: "bg-blue-500",
+            railHover: "group-hover:bg-blue-300",
+            icon: "bg-blue-100 text-blue-700",
+            badge: "bg-blue-100 text-blue-700",
+            progress: "from-blue-500 to-cyan-500"
+        },
+        {
+            activeCard: "border-red-300 bg-red-50",
+            hoverCard: "hover:border-red-200 hover:bg-red-50",
+            railActive: "bg-red-500",
+            railHover: "group-hover:bg-red-300",
+            icon: "bg-red-100 text-red-700",
+            badge: "bg-red-100 text-red-700",
+            progress: "from-red-500 to-rose-500"
+        }, 
+        {
+            activeCard: "border-yellow-300 bg-yellow-50",
+            hoverCard: "hover:border-yellow-200 hover:bg-yellow-50",
+            railActive: "bg-yellow-500",
+            railHover: "group-hover:bg-yellow-400",
+            icon: "bg-yellow-100 text-yellow-700",
+            badge: "bg-yellow-100 text-yellow-700",
+            progress: "from-yellow-500 to-amber-500"
+        },
+        {
+            activeCard: "border-slate-300 bg-white",
+            hoverCard: "hover:border-slate-300 hover:bg-white",
+            railActive: "bg-slate-500",
+            railHover: "group-hover:bg-slate-300",
+            icon: "bg-slate-100 text-slate-700",
+            badge: "bg-slate-100 text-slate-700",
+            progress: "from-slate-500 to-slate-700"
+        }
+    ];
     const steps = [
         {
             number: "1",
@@ -146,13 +184,13 @@ const AttendancePage = () => {
                         </span>
 
                         <h1 className="mt-5 text-3xl md:text-5xl font-black text-slate-900 leading-tight">
-                            <span className="text-blue-600">Track</span>{" "}
-                            <span className="text-red-500">Every</span>{" "}
-                            <span className="text-yellow-500">Shift</span>
+                            <span className="text-block-600">Track</span>{" "}
+                            <span className="text-blue-500">Every</span>{" "}
+                            <span className="text-blue-500">Shift</span>
                             <span className="block">
-                                <span className="text-blue-600">Without</span>{" "}
-                                <span className="text-red-500">Manual</span>{" "}
-                                <span className="text-yellow-500">Follow-Up</span>
+                                <span className="text-red-600">Without</span>{" "}
+                                <span className="text-yellow-500">Manual</span>{" "}
+                                <span className="text-block-500">Follow-Up</span>
                             </span>
                         </h1>
 
@@ -355,48 +393,53 @@ const AttendancePage = () => {
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {coreFeatures.map((f, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 28 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 0.5, delay: idx * 0.08 }}
-                            onMouseEnter={() => setSelectedFeature(idx)}
-                            className={`group relative rounded-2xl border p-6 h-full transition-all duration-300 ${selectedFeature === idx
-                                    ? "border-cyan-200 bg-gradient-to-b from-white to-cyan-50 shadow-xl"
-                                    : "border-slate-200 bg-white shadow-md hover:shadow-lg"
-                                }`}
-                        >
-                            <div className={`absolute top-0 left-0 h-full w-1 rounded-l-2xl transition-all duration-300 ${selectedFeature === idx ? "bg-cyan-500" : "bg-transparent group-hover:bg-cyan-300"}`} />
+                    {coreFeatures.map((f, idx) => {
+                        const isActive = selectedFeature === idx;
+                        const theme = coreFeatureCardThemes[idx] ?? coreFeatureCardThemes[0];
 
-                            <div className="flex items-start justify-between gap-3 mb-5">
-                                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-cyan-100 text-cyan-700">
-                                    <f.icon size={22} />
-                                </div>
-                                <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded-full uppercase tracking-wide">
-                                    Module {idx + 1}
-                                </span>
-                            </div>
+                        return (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 28 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false }}
+                                    transition={{ duration: 0.5, delay: idx * 0.08 }}
+                                    onMouseEnter={() => setSelectedFeature(idx)}
+                                    className={`group relative rounded-2xl border p-6 h-full transition-all duration-300 ${isActive
+                                        ? `${theme.activeCard} shadow-xl`
+                                        : `border-slate-200 bg-white shadow-md hover:shadow-lg ${theme.hoverCard}`
+                                        }`}
+                                >
+                                    <div className={`absolute top-0 left-0 h-full w-1 rounded-l-2xl transition-all duration-300 ${isActive ? theme.railActive : `bg-transparent ${theme.railHover}`}`} />
 
-                            <h3 className="text-lg font-black text-slate-900 leading-snug mb-2">
-                                {f.title}
-                            </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed mb-5">
-                                {f.description}
-                            </p>
+                                    <div className="flex items-start justify-between gap-3 mb-5">
+                                        <div className={`w-12 h-12 flex items-center justify-center rounded-xl ${theme.icon}`}>
+                                            <f.icon size={22} />
+                                        </div>
+                                        <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide ${theme.badge}`}>
+                                            Module {idx + 1}
+                                        </span>
+                                    </div>
 
-                            <div className="mt-auto">
-                                <div className="h-1.5 rounded-full bg-slate-200 overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-500"
-                                        style={{ width: `${70 + idx * 8}%` }}
-                                    />
-                                </div>
-                                <p className="text-[11px] text-slate-500 mt-2">Reliability score: {88 + idx * 3}%</p>
-                            </div>
-                        </motion.div>
-                    ))}
+                                    <h3 className="text-lg font-black text-slate-900 leading-snug mb-2">
+                                        {f.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-600 leading-relaxed mb-5">
+                                        {f.description}
+                                    </p>
+
+                                    <div className="mt-auto">
+                                        <div className="h-1.5 rounded-full bg-slate-200 overflow-hidden">
+                                            <div
+                                                className={`h-full bg-gradient-to-r ${theme.progress} rounded-full transition-all duration-500`}
+                                                style={{ width: `${70 + idx * 8}%` }}
+                                            />
+                                        </div>
+                                        <p className="text-[11px] text-slate-500 mt-2">Reliability score: {88 + idx * 3}%</p>
+                                    </div>
+                                </motion.div>
+                        );
+                    })}
                 </div>
             </section>
             {/* ===== WHY CHOOSE ===== */}
@@ -423,12 +466,51 @@ const AttendancePage = () => {
                         const activeIdx = hoveredWhyFeature ?? openWhyFeature ?? 0;
                         const active = whyFeatures[activeIdx];
                         const ActiveIcon = active.icon;
+                        const metricBoxTheme =
+                            activeIdx === 0
+                                ? {
+                                    card: "border-blue-200 bg-gradient-to-br from-white via-blue-50 to-sky-100 shadow-[0_12px_30px_rgba(59,130,246,0.18)]",
+                                    glow: "bg-blue-300/40",
+                                    label: "text-blue-600",
+                                    value: "text-blue-900",
+                                    divider: "bg-blue-200/70"
+                                }
+                                : activeIdx === 1
+                                    ? {
+                                        card: "border-red-200 bg-gradient-to-br from-white via-red-50 to-rose-100 shadow-[0_12px_30px_rgba(239,68,68,0.18)]",
+                                        glow: "bg-red-300/40",
+                                        label: "text-red-600",
+                                        value: "text-red-900",
+                                        divider: "bg-red-200/70"
+                                    }
+                                    : {
+                                        card: "border-yellow-200 bg-gradient-to-br from-white via-yellow-50 to-amber-100 shadow-[0_12px_30px_rgba(234,179,8,0.18)]",
+                                        glow: "bg-yellow-300/45",
+                                        label: "text-yellow-700",
+                                        value: "text-yellow-900",
+                                        divider: "bg-yellow-200/80"
+                                    };
 
                         return (
                             <div className="relative">
                                 <div className="flex flex-wrap justify-center gap-3 mb-7">
                                     {whyFeatures.map((item, idx) => {
                                         const isActive = idx === activeIdx;
+                                        const colorTheme =
+                                            idx === 0
+                                                ? {
+                                                    active: "bg-blue-100 border-blue-300 text-blue-800",
+                                                    hover: "hover:bg-blue-200 hover:border-blue-400 hover:text-blue-900"
+                                                }
+                                                : idx === 1
+                                                    ? {
+                                                        active: "bg-red-100 border-red-300 text-red-800",
+                                                        hover: "hover:bg-red-200 hover:border-red-400 hover:text-red-900"
+                                                    }
+                                                    : {
+                                                        active: "bg-yellow-100 border-yellow-300 text-yellow-800",
+                                                        hover: "hover:bg-yellow-200 hover:border-yellow-400 hover:text-yellow-900"
+                                                    };
                                         return (
                                             <button
                                                 key={item.title}
@@ -436,8 +518,8 @@ const AttendancePage = () => {
                                                 onMouseLeave={() => setHoveredWhyFeature(null)}
                                                 onClick={() => setOpenWhyFeature(idx)}
                                                 className={`px-5 py-2.5 rounded-full text-sm md:text-base font-extrabold transition border shadow-sm ${isActive
-                                                        ? "bg-blue-700 text-white border-blue-700"
-                                                        : "bg-white/95 text-slate-700 border-slate-300 hover:bg-blue-600 hover:text-white hover:border-blue-600"
+                                                        ? colorTheme.active
+                                                        : `bg-white/95 text-slate-700 border-slate-300 ${colorTheme.hover}`
                                                     }`}
                                             >
                                                 {item.title}
@@ -468,18 +550,23 @@ const AttendancePage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="space-y-4">
-                                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-4">
-                                            <p className="text-xs uppercase text-blue-600 mb-1">Impact</p>
-                                            <p className="text-lg font-black text-blue-900">{90 + activeIdx * 3}% Workforce Discipline</p>
-                                        </div>
-                                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-4">
-                                            <p className="text-xs uppercase text-blue-600 mb-1">Processing</p>
-                                            <p className="text-lg font-black text-blue-900">{82 + activeIdx * 5}% Faster Attendance Cycle</p>
-                                        </div>
-                                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-4">
-                                            <p className="text-xs uppercase text-blue-600 mb-1">Reliability</p>
-                                            <p className="text-lg font-black text-blue-900">{96 - activeIdx}% Data Confidence Score</p>
+                                    <div className={`relative overflow-hidden rounded-2xl border p-5 ${metricBoxTheme.card}`}>
+                                        <div className={`absolute -top-12 -right-8 w-36 h-36 rounded-full blur-2xl ${metricBoxTheme.glow}`} />
+                                        <div className="relative space-y-4">
+                                            <div>
+                                                <p className={`text-xs uppercase mb-1 ${metricBoxTheme.label}`}>Impact</p>
+                                                <p className={`text-lg font-black ${metricBoxTheme.value}`}>{90 + activeIdx * 3}% Workforce Discipline</p>
+                                            </div>
+                                            <div className={`h-px ${metricBoxTheme.divider}`} />
+                                            <div>
+                                                <p className={`text-xs uppercase mb-1 ${metricBoxTheme.label}`}>Processing</p>
+                                                <p className={`text-lg font-black ${metricBoxTheme.value}`}>{82 + activeIdx * 5}% Faster Attendance Cycle</p>
+                                            </div>
+                                            <div className={`h-px ${metricBoxTheme.divider}`} />
+                                            <div>
+                                                <p className={`text-xs uppercase mb-1 ${metricBoxTheme.label}`}>Reliability</p>
+                                                <p className={`text-lg font-black ${metricBoxTheme.value}`}>{96 - activeIdx}% Data Confidence Score</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -489,7 +576,7 @@ const AttendancePage = () => {
                                         key={`why-progress-${activeIdx}`}
                                         initial={{ width: "30%" }}
                                         animate={{ width: `${42 + activeIdx * 26}%` }}
-                                        transition={{ duration: 0.35 }}
+                                        transition={{ duration: 0.35 }} 
                                         className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"
                                     />
                                 </div>
