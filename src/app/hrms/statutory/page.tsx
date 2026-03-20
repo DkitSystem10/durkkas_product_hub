@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
     ArrowRight,
@@ -116,14 +116,22 @@ const trustBlocks = [
 export default function StatutoryPage() {
     const [isDemoOpen, setIsDemoOpen] = useState(false);
 
+    useEffect(() => {
+        if (isDemoOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isDemoOpen]);
+
     return (
-        <div className="min-h-screen bg-white font-outfit select-none isolate">
+        <div className="min-h-screen bg-white font-outfit select-none isolate w-full overflow-x-hidden">
             <div className="relative z-[400]">
                 <Navbar />
             </div>
 
             {/* SECTION 1: Hero */}
-            <section className="relative pt-[110px] pb-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
+            <section className="relative pt-24 md:pt-[110px] pb-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="absolute -top-24 left-1/4 w-80 h-80 bg-cyan-200/40 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 right-10 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl" />
 
@@ -132,13 +140,14 @@ export default function StatutoryPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
+                        className="flex flex-col items-center lg:items-start text-center lg:text-left"
                     >
                         <span className="inline-flex items-center gap-2  px-4 py-2 rounded-full bg-blue-50 text-blue-700 border border-blue-100 text-xs font-black tracking-wide uppercase">
                             Statutory Management Platform
                         </span>
-                        <h1 className="mt-5 text-3xl md:text-3xl lg:text-5xl font-black text-slate-900 leading-[1.05] tracking-tight">
+                        <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] md:leading-[1.05] tracking-tight">
                             <span className="text-blue-600">One</span>{" "}
-                            <span className="text-block-600">Command</span>{" "}
+                            <span className="text-slate-900">Command</span>{" "}
                             <span className="text-yellow-500">Center</span>
                             <span className="block">
                                 for <span className="text-blue-600">PF</span>,{" "}
@@ -316,7 +325,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 2: Feature Gradient Cards */}
-            <section className="py-6 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-6 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="grid md:grid-cols-3 gap-5">
                     {statutoryCards.map((card, idx) => (
                         <motion.div
@@ -345,7 +354,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 3: Compliance Pillars */}
-            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="rounded-[30px] bg-[#f6f8fb] border border-slate-200 p-6 md:p-10">
                     <div className="text-center max-w-3xl mx-auto mb-10">
                         <h2 className="text-3xl md:text-4xl font-black text-slate-900">Core Compliance Pillars</h2>
@@ -428,7 +437,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 4: Timeline Strip */}
-            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="rounded-[30px] border border-blue-100 bg-gradient-to-br from-[#f8fbff] via-white to-[#eef6ff] p-6 md:p-10 overflow-hidden">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl md:text-4xl font-black text-slate-900">Monthly Filing Timeline</h2>
@@ -464,16 +473,16 @@ export default function StatutoryPage() {
                                         </div>
                                     </div>
 
-                                    <div className="relative h-[140px] flex items-center justify-center md:order-2">
+                                    <div className="relative h-[110px] md:h-[140px] flex items-center justify-center md:order-2">
                                         <motion.div
                                             animate={{ rotate: isLeft ? 360 : -360 }}
                                             transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                                            className={`absolute w-[118px] h-[118px] rounded-full border-[4px] border-transparent ${isLeft ? "border-l-current border-b-current" : "border-r-current border-t-current"} ${accents.tone}`}
+                                            className={`absolute w-[100px] h-[100px] md:w-[118px] md:h-[118px] rounded-full border-[4px] border-transparent ${isLeft ? "border-l-current border-b-current" : "border-r-current border-t-current"} ${accents.tone}`}
                                         />
                                         <motion.div
                                             animate={{ scale: [1, 1.06, 1] }}
                                             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                                            className="relative w-[88px] h-[88px] rounded-full bg-gradient-to-br from-blue-700 to-blue-500 text-white border-4 border-dashed border-white shadow-[0_10px_25px_rgba(30,64,175,0.35)] flex items-center justify-center text-center"
+                                            className="relative w-[76px] h-[76px] md:w-[88px] md:h-[88px] rounded-full bg-gradient-to-br from-blue-700 to-blue-500 text-white border-4 border-dashed border-white shadow-[0_10px_25px_rgba(30,64,175,0.35)] flex items-center justify-center text-center"
                                         >
                                             <p className="text-xs font-black leading-tight">
                                                 Service
@@ -511,7 +520,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 5: Trust Grid */}
-            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="rounded-[30px] bg-gradient-to-br from-[#f7fbff] via-white to-[#eef4ff] border border-blue-200 p-6 md:p-10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.14),transparent_45%)]" />
 
@@ -559,7 +568,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 6: Comparative Block */}
-            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="rounded-[30px] border border-blue-200 bg-gradient-to-br from-white via-[#f5f9ff] to-[#ecf4ff] p-6 md:p-10 overflow-hidden relative">
                     <div className="absolute -top-16 right-16 w-64 h-64 rounded-full bg-blue-200/35 blur-3xl" />
                     <div className="absolute -bottom-24 left-12 w-72 h-72 rounded-full bg-cyan-200/30 blur-3xl" />
@@ -649,7 +658,7 @@ export default function StatutoryPage() {
             </section>
 
             {/* SECTION 7: Integration Mesh */}
-            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <section className="py-8 px-4 md:px-12 lg:px-24 max-w-[1600px] mx-auto overflow-hidden">
                 <div className="rounded-[30px] border border-blue-200 bg-gradient-to-br from-[#f9fbff] via-white to-[#edf5ff] p-6 md:p-10 overflow-hidden relative">
                     <div className="absolute -top-20 left-1/3 w-64 h-64 rounded-full bg-blue-200/30 blur-3xl" />
 

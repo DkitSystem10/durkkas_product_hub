@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -166,8 +166,8 @@ function CoursesVisual() {
                 key={tab.label}
                 onClick={() => setActiveTab(index)}
                 className={`flex-1 min-w-[140px] px-4 py-3 rounded-2xl border transition-all duration-300 flex items-center gap-3 ${isActive
-                    ? `${colors.activeBorder} ${colors.activeBg} text-white shadow-lg shadow-black/5 scale-[1.02]`
-                    : `border-slate-200 bg-white hover:border-slate-300 text-slate-600`
+                  ? `${colors.activeBorder} ${colors.activeBg} text-white shadow-lg shadow-black/5 scale-[1.02]`
+                  : `border-slate-200 bg-white hover:border-slate-300 text-slate-600`
                   }`}
               >
                 <div className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 ${isActive ? 'bg-white/20' : colors.bg}`}>
@@ -194,8 +194,8 @@ function CoursesVisual() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${activeTab === 0 ? 'bg-blue-100 text-blue-700' :
-                    activeTab === 1 ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
+                  activeTab === 1 ? 'bg-yellow-100 text-yellow-700' :
+                    'bg-red-100 text-red-700'
                   }`}>
                   Phase 0{activeTab + 1}
                 </span>
@@ -249,9 +249,9 @@ const enrollmentSteps = [
     pulseTitle: "Enrollment Pulse",
     pulseValue: "1,240",
     regions: [
-      { name: "Tamil Nadu", val: "42%" },
-      { name: "Kerala", val: "28%" },
-      { name: "Karnataka", val: "31%" }
+      { name: "", val: "42%" },
+      { name: "", val: "28%" },
+      { name: "", val: "31%" }
     ],
     verified: "10,000+",
     progress: "w-4/5"
@@ -333,9 +333,9 @@ function EnrollmentVisual() {
             Dynamic processing for the <span className="text-white font-bold">{active.title}</span> stage.
           </p>
 
-          <div className="mt-10 grid grid-cols-3 gap-4">
+          <div className="mt-6 md:mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
             {active.regions.map((region, i) => (
-              <div key={region.name} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm hover:bg-white/10 transition-colors">
+              <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm hover:bg-white/10 transition-colors">
                 <p className="text-[10px] font-black uppercase tracking-widest text-white/60">{region.name}</p>
                 <p className="mt-2 text-xl font-black">{region.val}</p>
                 <div className="mt-2 h-1 w-full bg-white/10 rounded-full">
@@ -376,8 +376,8 @@ function EnrollmentVisual() {
               whileTap={{ scale: 0.98 }}
               onClick={() => setActiveStep(idx)}
               className={`group flex items-start gap-5 rounded-[32px] border p-6 transition-all duration-500 text-left ${activeStep === idx
-                  ? "bg-white border-blue-100 shadow-[0_25px_60px_rgba(0,0,0,0.08)] scale-[1.02]"
-                  : "bg-white/40 border-slate-100 hover:bg-white/80 hover:border-slate-200"
+                ? "bg-white border-blue-100 shadow-[0_25px_60px_rgba(0,0,0,0.08)] scale-[1.02]"
+                : "bg-white/40 border-slate-100 hover:bg-white/80 hover:border-slate-200"
                 }`}
             >
               <div className={`flex h-12 w-12 items-center justify-center rounded-2xl font-black text-lg transition-all duration-500 ${activeStep === idx ? step.accent.replace('from-', 'bg-') : 'bg-slate-200 text-slate-500 group-hover:scale-110'
@@ -479,7 +479,7 @@ function SectionVisual({ id }: { id: string }) {
               className="md:col-span-4 md:row-span-1 rounded-[32px] bg-blue-50/90 backdrop-blur-md border-[2px] border-blue-500/30 p-6 text-slate-900 relative overflow-hidden group cursor-pointer"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-blue-500/20 transition-colors" />
-              
+
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center gap-4 mb-4">
@@ -508,42 +508,42 @@ function SectionVisual({ id }: { id: string }) {
                       <div className="h-1.5 w-1.5 rounded-full bg-blue-600" /> Neural Templates
                     </div>
                   </div>
-                  
-                  <div className="mt-4 grid grid-cols-3 gap-2">
-                     {[
-                       { label: 'Flow', val: '88%', col: 'blue' },
-                       { label: 'Logic', val: '94%', col: 'emerald' },
-                       { label: 'Nodes', val: '12', col: 'indigo' }
-                     ].map(item => (
-                       <div key={item.label} className="p-2 bg-white/40 rounded-xl border border-blue-100/50">
-                          <p className="text-[8px] font-black text-slate-400 uppercase tracking-tighter">{item.label}</p>
-                          <p className={`text-xs font-black text-${item.col}-600`}>{item.val}</p>
-                       </div>
-                     ))}
+
+                  <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                      { label: 'Flow', val: '88%', col: 'blue' },
+                      { label: 'Logic', val: '94%', col: 'emerald' },
+                      { label: 'Nodes', val: '12', col: 'indigo' }
+                    ].map(item => (
+                      <div key={item.label} className="p-2 bg-white/40 rounded-xl border border-blue-100/50">
+                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-tighter">{item.label}</p>
+                        <p className={`text-xs font-black text-${item.col}-600`}>{item.val}</p>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="mt-4 p-4 bg-white/50 rounded-2xl border border-blue-100 flex items-center justify-between">
-                     <div className="space-y-1">
-                        <p className="text-[10px] font-black text-slate-400 uppercase">Resource Load</p>
-                        <p className="text-sm font-black text-blue-600">Optimal (12%)</p>
-                     </div>
-                     <div className="flex gap-1 items-end h-8">
-                        {[40, 70, 45, 90, 65, 80].map((h, i) => (
-                          <div key={i} className="w-1.5 bg-blue-200 rounded-t-sm" style={{ height: `${h}%` }} />
-                        ))}
-                     </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-black text-slate-400 uppercase">Resource Load</p>
+                      <p className="text-sm font-black text-blue-600">Optimal (12%)</p>
+                    </div>
+                    <div className="flex gap-1 items-end h-8">
+                      {[40, 70, 45, 90, 65, 80].map((h, i) => (
+                        <div key={i} className="w-1.5 bg-blue-200 rounded-t-sm" style={{ height: `${h}%` }} />
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="mt-auto flex items-center justify-between border-t border-blue-500/10 pt-6">
+                <div className="mt-auto flex flex-col sm:flex-row items-center justify-between border-t border-blue-500/10 pt-6 gap-6 sm:gap-0">
                   <div className="flex -space-x-2">
-                    {[1,2,3].map(i => (
+                    {[1, 2, 3].map(i => (
                       <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-black text-blue-600">
                         {i === 3 ? '+' : 'U' + i}
                       </div>
                     ))}
                     <span className="ml-4 text-[10px] font-bold text-slate-400 self-center">+12 Engineers Active</span>
                   </div>
-                  <button className="px-8 py-3 rounded-2xl bg-blue-600 text-white font-black text-xs hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all active:scale-95 flex items-center gap-2">
+                  <button className="w-full sm:w-auto px-8 py-3 rounded-2xl bg-blue-600 text-white font-black text-xs hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all active:scale-95 flex items-center justify-center gap-2">
                     Launch Hub <ArrowRight size={16} />
                   </button>
                 </div>
@@ -592,40 +592,40 @@ function SectionVisual({ id }: { id: string }) {
                   ))}
 
                   <div className="pt-4 border-t border-slate-100 mt-2">
-                     <p className="text-[10px] font-black text-slate-400 uppercase mb-3">Asset Toolkit</p>
-                     <div className="flex flex-wrap gap-2">
-                        {['Video', 'Quiz', 'Doc', '3D'].map(tool => (
-                          <span key={tool} className="px-2 py-1 bg-yellow-100 text-yellow-700 text-[9px] font-black rounded-md">{tool}</span>
-                        ))}
-                     </div>
+                    <p className="text-[10px] font-black text-slate-400 uppercase mb-3">Asset Toolkit</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Video', 'Quiz', 'Doc', '3D'].map(tool => (
+                        <span key={tool} className="px-2 py-1 bg-yellow-100 text-yellow-700 text-[9px] font-black rounded-md">{tool}</span>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="mt-6 flex items-center justify-between px-2">
-                     <div>
-                        <p className="text-[10px] font-black text-slate-400 uppercase">Student Satisfaction</p>
-                        <div className="flex gap-0.5 mt-1">
-                           {[1,2,3,4,5].map(s => <div key={s} className="h-1.5 w-1.5 rounded-full bg-yellow-400" />)}
-                        </div>
-                     </div>
-                      <p className="text-xs font-black text-slate-900">4.9/5.0</p>
+                    <div>
+                      <p className="text-[10px] font-black text-slate-400 uppercase">Student Satisfaction</p>
+                      <div className="flex gap-0.5 mt-1">
+                        {[1, 2, 3, 4, 5].map(s => <div key={s} className="h-1.5 w-1.5 rounded-full bg-yellow-400" />)}
+                      </div>
+                    </div>
+                    <p className="text-xs font-black text-slate-900">4.9/5.0</p>
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-slate-100">
-                     <p className="text-[10px] font-black text-slate-400 uppercase mb-4">Live Lesson Preview</p>
-                     <div className="space-y-3">
-                        {[
-                          { name: 'Introduction to Logic', time: '12:44', status: 'Draft' },
-                          { name: 'Neural Flow Patterns', time: '18:20', status: 'Live' }
-                        ].map(lesson => (
-                          <div key={lesson.name} className="flex items-center justify-between p-3 bg-yellow-50 rounded-2xl border border-yellow-100 group/item hover:bg-yellow-100 transition-colors">
-                             <div className="flex items-center gap-3">
-                                <div className={`h-2 w-2 rounded-full ${lesson.status === 'Live' ? 'bg-emerald-500' : 'bg-slate-300'}`} />
-                                <p className="text-[11px] font-bold text-slate-700">{lesson.name}</p>
-                             </div>
-                             <span className="text-[9px] font-black text-slate-400">{lesson.time}</span>
+                    <p className="text-[10px] font-black text-slate-400 uppercase mb-4">Live Lesson Preview</p>
+                    <div className="space-y-3">
+                      {[
+                        { name: 'Introduction to Logic', time: '12:44', status: 'Draft' },
+                        { name: 'Neural Flow Patterns', time: '18:20', status: 'Live' }
+                      ].map(lesson => (
+                        <div key={lesson.name} className="flex items-center justify-between p-3 bg-yellow-50 rounded-2xl border border-yellow-100 group/item hover:bg-yellow-100 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <div className={`h-2 w-2 rounded-full ${lesson.status === 'Live' ? 'bg-emerald-500' : 'bg-slate-300'}`} />
+                            <p className="text-[11px] font-bold text-slate-700">{lesson.name}</p>
                           </div>
-                        ))}
-                     </div>
+                          <span className="text-[9px] font-black text-slate-400">{lesson.time}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -656,21 +656,21 @@ function SectionVisual({ id }: { id: string }) {
               <p className="text-slate-500 text-[11px] font-medium leading-relaxed max-w-xs mb-4">
                 Visualize transitions and drop-off points with AI diagnostics.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-2 mb-4">
-                 <div className="p-3 bg-red-100 rounded-2xl border border-red-200">
-                    <p className="text-[9px] font-black text-red-600 uppercase">Retention</p>
-                    <p className="text-lg font-black text-slate-900">88%</p>
-                 </div>
-                 <div className="p-3 bg-slate-100 rounded-2xl border border-slate-200">
-                    <p className="text-[9px] font-black text-slate-600 uppercase">Avg Time</p>
-                    <p className="text-lg font-black text-slate-900">42m</p>
-                 </div>
+                <div className="p-3 bg-red-100 rounded-2xl border border-red-200">
+                  <p className="text-[9px] font-black text-red-600 uppercase">Retention</p>
+                  <p className="text-lg font-black text-slate-900">88%</p>
+                </div>
+                <div className="p-3 bg-slate-100 rounded-2xl border border-slate-200">
+                  <p className="text-[9px] font-black text-slate-600 uppercase">Avg Time</p>
+                  <p className="text-lg font-black text-slate-900">42m</p>
+                </div>
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-white/50 rounded-xl border border-red-100">
-                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
-                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Peak traffic detected in 3 nodes</p>
+                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Peak traffic detected in 3 nodes</p>
               </div>
             </motion.div>
 
@@ -701,21 +701,21 @@ function SectionVisual({ id }: { id: string }) {
                 <p className="text-slate-500 text-[11px] font-medium leading-relaxed mb-4">
                   Enterprise control over versioning and multi-tenancy access.
                 </p>
-                
+
                 <div className="w-full space-y-2 mb-6">
-                   {['Geo-Fencing', 'SAML SSO', 'Audit Logs'].map(sec => (
-                     <div key={sec} className="flex items-center gap-2 text-[10px] font-bold text-slate-600">
-                        <div className="h-1 w-1 rounded-full bg-emerald-500" /> {sec}
-                     </div>
-                   ))}
+                  {['Geo-Fencing', 'SAML SSO', 'Audit Logs'].map(sec => (
+                    <div key={sec} className="flex items-center gap-2 text-[10px] font-bold text-slate-600">
+                      <div className="h-1 w-1 rounded-full bg-emerald-500" /> {sec}
+                    </div>
+                  ))}
                 </div>
 
                 <div className="w-full p-3 bg-slate-900/5 rounded-2xl border border-slate-100 mb-6 flex items-center justify-between">
-                   <p className="text-[9px] font-black text-slate-500 uppercase">System Integrity</p>
-                   <span className="text-[10px] font-black text-emerald-600">SECURE</span>
+                  <p className="text-[9px] font-black text-slate-500 uppercase">System Integrity</p>
+                  <span className="text-[10px] font-black text-emerald-600">SECURE</span>
                 </div>
 
-                
+
               </div>
             </motion.div>
 
@@ -729,14 +729,14 @@ function SectionVisual({ id }: { id: string }) {
               className="md:col-span-6 rounded-[24px] bg-white/60 backdrop-blur-md border-[2px] border-slate-200/50 p-4 flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-4">
-                 <div className="h-10 w-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
-                    <Layers size={20} />
-                 </div>
-                 <p className="text-sm font-black text-slate-400">Search modules, lessons, or student records...</p>
+                <div className="h-10 w-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
+                  <Layers size={20} />
+                </div>
+                <p className="text-sm font-black text-slate-400">Search modules, lessons, or student records...</p>
               </div>
               <div className="flex gap-2">
-                 <span className="px-3 py-1 bg-slate-200/50 text-slate-500 text-[9px] font-black rounded-lg">⌘ K</span>
-                 <span className="px-3 py-1 bg-blue-600 text-white text-[9px] font-black rounded-lg">SEARCH</span>
+                <span className="px-3 py-1 bg-slate-200/50 text-slate-500 text-[9px] font-black rounded-lg">⌘ K</span>
+                <span className="px-3 py-1 bg-blue-600 text-white text-[9px] font-black rounded-lg">SEARCH</span>
               </div>
             </motion.div>
 
@@ -749,17 +749,17 @@ function SectionVisual({ id }: { id: string }) {
               viewport={{ once: true }}
               className="md:col-span-2 rounded-[28px] bg-red-50/90 backdrop-blur-md border-[2px] border-red-500/30 p-5 group cursor-pointer"
             >
-               <div className="flex justify-between items-center mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-red-500 text-white flex items-center justify-center">
-                     <Shield size={20} />
-                  </div>
-                  <div className="px-2 py-0.5 bg-emerald-100 text-emerald-600 text-[8px] font-black rounded uppercase">Active</div>
-               </div>
-               <h4 className="text-sm font-black text-slate-900 uppercase mb-2">Task Automator</h4>
-               <p className="text-[10px] text-slate-500 font-medium mb-4">Schedule recurring content releases and automated grading.</p>
-               <div className="h-1 w-full bg-red-100 rounded-full overflow-hidden">
-                  <motion.div animate={{ width: ['20%', '90%', '20%'] }} transition={{ duration: 3, repeat: Infinity }} className="h-full bg-red-500" />
-               </div>
+              <div className="flex justify-between items-center mb-4">
+                <div className="h-10 w-10 rounded-xl bg-red-500 text-white flex items-center justify-center">
+                  <Shield size={20} />
+                </div>
+                <div className="px-2 py-0.5 bg-emerald-100 text-emerald-600 text-[8px] font-black rounded uppercase">Active</div>
+              </div>
+              <h4 className="text-sm font-black text-slate-900 uppercase mb-2">Task Automator</h4>
+              <p className="text-[10px] text-slate-500 font-medium mb-4">Schedule recurring content releases and automated grading.</p>
+              <div className="h-1 w-full bg-red-100 rounded-full overflow-hidden">
+                <motion.div animate={{ width: ['20%', '90%', '20%'] }} transition={{ duration: 3, repeat: Infinity }} className="h-full bg-red-500" />
+              </div>
             </motion.div>
 
             {/* 7. NEW: USER ACTIVITY (VIBRANT BLUE) */}
@@ -771,20 +771,20 @@ function SectionVisual({ id }: { id: string }) {
               viewport={{ once: true }}
               className="md:col-span-2 rounded-[28px] bg-blue-50/90 backdrop-blur-md border-[2px] border-blue-500/30 p-5 group cursor-pointer"
             >
-               <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
-                     <BarChart3 size={20} />
-                  </div>
-                  <div>
-                     <p className="text-[10px] font-black text-slate-400 uppercase">Live Usage</p>
-                     <p className="text-sm font-black text-slate-900">4,284 <span className="text-[8px] text-emerald-500">↑12%</span></p>
-                  </div>
-               </div>
-               <div className="flex gap-1 h-8 items-end">
-                  {[30, 60, 40, 80, 50, 90, 70, 40, 60].map((h, i) => (
-                    <div key={i} className="flex-1 bg-blue-200 rounded-t-[2px]" style={{ height: `${h}%` }} />
-                  ))}
-               </div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center">
+                  <BarChart3 size={20} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-slate-400 uppercase">Live Usage</p>
+                  <p className="text-sm font-black text-slate-900">4,284 <span className="text-[8px] text-emerald-500">↑12%</span></p>
+                </div>
+              </div>
+              <div className="flex gap-1 h-8 items-end">
+                {[30, 60, 40, 80, 50, 90, 70, 40, 60].map((h, i) => (
+                  <div key={i} className="flex-1 bg-blue-200 rounded-t-[2px]" style={{ height: `${h}%` }} />
+                ))}
+              </div>
             </motion.div>
 
             {/* 8. NEW: FEEDBACK LOOP (VIBRANT YELLOW) */}
@@ -796,17 +796,17 @@ function SectionVisual({ id }: { id: string }) {
               viewport={{ once: true }}
               className="md:col-span-2 rounded-[28px] bg-yellow-50/90 backdrop-blur-md border-[2px] border-yellow-500/30 p-5 group cursor-pointer relative overflow-hidden"
             >
-               <div className="absolute top-2 right-2 h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
-               <h4 className="text-sm font-black text-slate-900 uppercase mb-4">Feedback Loop</h4>
-               <div className="space-y-2">
-                  {[1, 2].map(i => (
-                    <div key={i} className="flex items-center gap-2 p-2 bg-white rounded-xl border border-yellow-100">
-                       <div className="h-6 w-6 rounded-lg bg-yellow-100 flex items-center justify-center text-[10px]">💬</div>
-                       <div className="h-1.5 w-16 bg-slate-100 rounded-full" />
-                    </div>
-                  ))}
-               </div>
-               <p className="mt-3 text-[9px] font-black text-yellow-600 uppercase tracking-widest text-center">32 New Comments</p>
+              <div className="absolute top-2 right-2 h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
+              <h4 className="text-sm font-black text-slate-900 uppercase mb-4">Feedback Loop</h4>
+              <div className="space-y-2">
+                {[1, 2].map(i => (
+                  <div key={i} className="flex items-center gap-2 p-2 bg-white rounded-xl border border-yellow-100">
+                    <div className="h-6 w-6 rounded-lg bg-yellow-100 flex items-center justify-center text-[10px]">💬</div>
+                    <div className="h-1.5 w-16 bg-slate-100 rounded-full" />
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-[9px] font-black text-yellow-600 uppercase tracking-widest text-center">32 New Comments</p>
             </motion.div>
           </div>
         </div>
@@ -1167,9 +1167,18 @@ function AnalyticsReportsPanel() {
 
 export default function EmsPage() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  
+  // Prevent scroll when modal is open
+  useEffect(() => {
+    if (isDemoOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isDemoOpen]);
 
   return (
-    <div className="min-h-screen bg-white font-outfit select-none isolate">
+    <div className="min-h-screen bg-white font-outfit select-none isolate w-full overflow-x-hidden">
       <div className="relative z-[400]">
         <Navbar />
       </div>
@@ -1181,7 +1190,7 @@ export default function EmsPage() {
             <section
               key={section.id}
               id={section.id}
-              className="relative overflow-hidden px-4 md:px-12 lg:px-24 pt-8 pb-3 md:pt-12 md:pb-6 bg-white"
+              className="relative overflow-hidden px-4 md:px-12 lg:px-24 pt-24 pb-3 md:pt-20 md:pb-6 bg-white"
             >
               {/* Pure white background: no glow overlays */}
 
@@ -1202,7 +1211,10 @@ export default function EmsPage() {
                   </p>
 
                   <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                    <button className="px-6 py-3 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:scale-105 transition-all inline-flex items-center gap-2">
+                    <button
+                      onClick={() => setIsDemoOpen(true)}
+                      className="px-6 py-3 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:scale-105 transition-all inline-flex items-center gap-2"
+                    >
                       Open EMS <ArrowRight size={15} />
                     </button>
                     <button className="px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-bold hover:border-blue-300 hover:text-blue-700 hover:scale-105 transition-all">
@@ -1292,7 +1304,7 @@ export default function EmsPage() {
                   ))}
                 </div>
 
-                <div className="mt-10 rounded-[32px] border border-blue-100 bg-white p-6 shadow-[0_24px_60px_rgba(30,64,175,0.12)]">
+                <div className="mt-10 rounded-[28px] md:rounded-[32px] border border-blue-100 bg-white p-4 md:p-6 shadow-[0_24px_60px_rgba(30,64,175,0.12)]">
                   <SectionVisual id={section.id} />
                 </div>
               </div>
@@ -1323,7 +1335,7 @@ export default function EmsPage() {
                   </p>
                 </div>
 
-                <div className="mt-10 rounded-[32px] border border-blue-100 bg-white p-6 shadow-[0_24px_60px_rgba(30,64,175,0.18)]">
+                <div className="mt-10 rounded-[28px] md:rounded-[32px] border border-blue-100 bg-white p-4 md:p-6 shadow-[0_24px_60px_rgba(30,64,175,0.18)]">
                   <SectionVisual id={section.id} />
                 </div>
               </div>
@@ -1442,6 +1454,7 @@ export default function EmsPage() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   {section.id !== "reports" && (
                     <button
+                      onClick={() => setIsDemoOpen(true)}
                       className={`px-7 py-3 rounded-xl bg-gradient-to-r ${section.accent} text-white font-bold hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2 shadow-lg`}
                     >
                       {section.cta} <ArrowRight size={17} />

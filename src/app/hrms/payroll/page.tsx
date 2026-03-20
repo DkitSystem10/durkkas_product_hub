@@ -32,6 +32,15 @@ const PayrollPage = () => {
         setIsMounted(true);
     }, []);
 
+    // Prevent background scroll when modal is open
+    useEffect(() => {
+        if (isDemoOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isDemoOpen]);
+
     if (!isMounted) return null;
 
     const coreFeatures = [
